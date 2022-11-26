@@ -1,0 +1,71 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+
+
+
+
+<div class="container mt-5">
+<div class="row">
+    <div class="col-sm-6">
+        <h2 class="text-center">EXISTING CUSTOMERS</h2>
+        <HR>
+        <p>By Creating an account with our website, u will be able to move through uploading and downloading </p>
+        <center><a href="{% url 'login' %}" class="btn btn-danger text-white mt-5">CREATE AN ACCOUNT</a></center>
+    </div>
+
+    <div class="col-sm-6">
+        <h2 class="text-center">REGISTER YOURSELF</h2>
+        <HR>
+        <p>If you have not an account with us, please signup...</p>
+        <form method="post">
+            {% csrf_token %}
+            <label>FIRST NAME</label>
+                <input type="text" class="form-control" placeholder="Enter First name" id = "firstname" name="firstname">
+            <label>LAST NAME</label>
+                <input type="text" class="form-control" placeholder="Enter Last name" id = "lastname" name="lastname">
+            <label>CONTACT</label>
+                <input type="text" class="form-control" placeholder="Enter Contact no" id = "contact" name="contact">
+            <label>EMAIL ID</label>
+                <input type="email" class="form-control" placeholder="Enter Email ID" id = "emailid" name="emailid">
+            <label>PASSWORD</label>
+                <input type="password" class="form-control" placeholder="Enter Password" id = "password" name="password">
+            <label>BRANCH</label>
+            <select class="form-control" id = "branch" name="branch">
+                <option value="Computer Science">Computer Science</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Civil">Civil</option>
+            </select>    
+
+            <label>ARE YOU ?</label>
+            <select class="form-control" id = "role" name="role">
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+            </select>
+            
+
+                <input type="submit" class="btn btn-danger mt-2" value="SUBMIT" >
+        </form>
+    </div>
+
+</div>
+</div>
+
+
+{% if error == "no" %}
+<script>
+    alert('Signed Up Successfully');
+    window.location = ('{% url "login" %}');
+</script>
+{% endif %}
+
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong');
+</script>
+{% endif %}
+
+{% endblock %}
